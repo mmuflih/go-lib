@@ -3,12 +3,16 @@ package command
 import (
 	"bufio"
 	"os"
-
-	"github.com/astaxie/beego"
+	"strings"
 )
 
-func GetInput() string {
+func GetInput(wordsLength int) []string {
 	reader := bufio.NewReader(os.Stdin)
 	input, _ := reader.ReadString('\n')
-	return beego.Substr(input, 0, len(input)-1)
+	split := strings.Split(input, " ")
+	var ar []string
+	for i := 0; i < wordsLength; i++ {
+		ar = append(ar, split[i])
+	}
+	return ar
 }
